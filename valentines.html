@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine</title>
+  <style>
+    body {
+      margin: 0;
+      height: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color:#FFBBC1;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .box {
+      background-color: #FF8896;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      width: 300px;
+      min-height: 300px; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      color: rgb(243, 0, 81);
+    }
+
+    .gif img {
+      width: 200px;
+      border-radius: 10px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      width: 100%;
+      height: 50px; 
+      
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+      gap: 20px;              
+    }
+
+    button {
+      border-radius: 50px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      transition: 0.3s;
+    }
+
+    #yes {
+      background-color: #FF3334;
+    }
+
+    #yes:hover {
+      background-color: #C00000;
+    }
+
+    #no {
+      background-color: #C00000;
+      position: relative; 
+    }
+
+    .success {
+      display: none; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    
+    <div class="question">
+      <div class="gif">
+        <img src="https://media.giphy.com/media/NBs1mJNW8qCPrsauIN/giphy.gif" alt="sad hamster">
+      </div>
+      <h1>Will You be my valentine?</h1>
+      <div class="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+      </div>
+    </div>
+
+    <div class="success">
+      <div class="gif2">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5eGZ5eGZ5eGZ5eGZ5eGZ5eGZ5eGZ5eGZ5eGZ5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="happy cat" width="150">
+      </div>
+      <h1>See you on the 14th!</h1>
+    </div>
+
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    
+   
+    const questionScreen = document.querySelector('.question');
+    const successScreen = document.querySelector('.success');
+    const box = document.querySelector('.box');
+
+  
+    noBtn.addEventListener('mouseover', () => {
+      const boxRect = box.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+     
+      const maxX = (boxRect.width / 2) - btnRect.width;
+      const maxY = (boxRect.height / 2) - btnRect.height;
+      const minX = -maxX;
+      const minY = -maxY;
+
+      const randomX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+      const randomY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      questionScreen.style.display = 'none';
+      successScreen.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
